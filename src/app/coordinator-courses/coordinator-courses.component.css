@@ -1,0 +1,4 @@
+@import "~font-awesome/css/font-awesome.css"; /* Caminho para o arquivo de estilos do Font Awesome */
+ .poppins {
+  font-family: 'Poppins', sans-serif;
+ }
