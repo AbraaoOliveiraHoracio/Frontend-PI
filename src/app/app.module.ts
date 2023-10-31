@@ -7,12 +7,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoordinatorLoginComponent } from './coordinator-login/coordinator-login.component';
 import { CoordinatorFirstScreenComponent } from './coordinator-first-screen/coordinator-first-screen.component';
 
+import { CoordinatorTeacherComponent } from './coordinator-teacher/coordinator-teacher.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     FirstScreenComponent,
     CoordinatorLoginComponent,
-    CoordinatorFirstScreenComponent
+    CoordinatorFirstScreenComponent,
+    CoordinatorTeacherComponent
   ],
   imports: [
     BrowserModule,
