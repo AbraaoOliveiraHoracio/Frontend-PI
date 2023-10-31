@@ -11,6 +11,8 @@ import { CoordinatorTeacherComponent } from './coordinator-teacher/coordinator-t
 import { CoordinatorDisciplineComponent } from './coordinator-discipline/coordinator-discipline.component';
 import { CoordinatorClassroomsComponent } from './coordinator-classrooms/coordinator-classrooms.component';
 import { CoordinatorSchedulesComponent } from './coordinator-schedules/coordinator-schedules.component';
+import { CoordinatorCoursesComponent } from './coordinator-courses/coordinator-courses.component';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CoordinatorSchedulesComponent } from './coordinator-schedules/coordinat
     CoordinatorTeacherComponent,
     CoordinatorDisciplineComponent,
     CoordinatorClassroomsComponent,
-    CoordinatorSchedulesComponent
+    CoordinatorSchedulesComponent,
+    CoordinatorCoursesComponent,
+
   ],
   imports: [
     BrowserModule,
