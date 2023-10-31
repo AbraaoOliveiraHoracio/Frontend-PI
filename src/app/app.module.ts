@@ -18,6 +18,7 @@ import { CoordinatorCoursesRegisterComponent } from './coordinator-courses-regis
 import { CoordinatorClassroomsRegisterComponent } from './coordinator-classrooms-register/coordinator-classrooms-register.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
