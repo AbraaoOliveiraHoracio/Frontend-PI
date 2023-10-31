@@ -1,4 +1,10 @@
+
 @import "~font-awesome/css/font-awesome.css"; /* Caminho para o arquivo de estilos do Font Awesome */
  .poppins {
   font-family: 'Poppins', sans-serif;
  }
+
+input:focus {
+    --bs-focus-ring-color: rgba(8, 8, 8, 0.315);
+  }
+  
