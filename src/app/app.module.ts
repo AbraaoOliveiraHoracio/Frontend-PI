@@ -8,6 +8,7 @@ import { CoordinatorLoginComponent } from './coordinator-login/coordinator-login
 import { CoordinatorFirstScreenComponent } from './coordinator-first-screen/coordinator-first-screen.component';
 
 import { CoordinatorTeacherComponent } from './coordinator-teacher/coordinator-teacher.component';
+import { CoordinatorDisciplineComponent } from './coordinator-discipline/coordinator-discipline.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { CoordinatorTeacherComponent } from './coordinator-teacher/coordinator-t
     FirstScreenComponent,
     CoordinatorLoginComponent,
     CoordinatorFirstScreenComponent,
-    CoordinatorTeacherComponent
+    CoordinatorTeacherComponent,
+    CoordinatorDisciplineComponent
   ],
   imports: [
     BrowserModule,
