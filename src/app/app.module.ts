@@ -13,6 +13,7 @@ import { CoordinatorClassroomsComponent } from './coordinator-classrooms/coordin
 import { CoordinatorSchedulesComponent } from './coordinator-schedules/coordinator-schedules.component';
 import { CoordinatorCoursesComponent } from './coordinator-courses/coordinator-courses.component';
 import { CoordinatorTeacherRegisterComponent } from './coordinator-teacher-register/coordinator-teacher-register.component';
+import { CoordinatorDisciplineRegisterComponent } from './coordinator-discipline-register/coordinator-discipline-register.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import { CoordinatorTeacherRegisterComponent } from './coordinator-teacher-regis
     CoordinatorSchedulesComponent,
     CoordinatorCoursesComponent,
     CoordinatorTeacherRegisterComponent,
+    CoordinatorDisciplineRegisterComponent,
 
   ],
   imports: [
