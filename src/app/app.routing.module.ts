@@ -15,18 +15,18 @@ import { FirstScreenComponent } from './first-screen/first-screen.component';
 
 
 const routes: Routes = [
-    { path: '', component: CoordinatorClassroomsComponent },
-    { path: '', component: CoordinatorClassroomsRegisterComponent },
-    { path: '', component: CoordinatorCoursesComponent },
-    { path: '', component: CoordinatorCoursesRegisterComponent },
-    { path: '', component: CoordinatorDisciplineComponent },
-    { path: '', component: CoordinatorDisciplineRegisterComponent },
-    { path: '', component: CoordinatorFirstScreenComponent },
-    { path: '', component: CoordinatorLoginComponent },
-    { path: '', component: CoordinatorSchedulesComponent },
-    { path: '', component: CoordinatorTeacherComponent },
-    { path: '', component: CoordinatorTeacherRegisterComponent },
-    { path: '', component: FirstScreenComponent }
+    { path: 'classrooms', component: CoordinatorClassroomsComponent },
+    { path: 'classroomsr', component: CoordinatorClassroomsRegisterComponent },
+    { path: 'courses', component: CoordinatorCoursesComponent },
+    { path: 'coursesr', component: CoordinatorCoursesRegisterComponent },
+    { path: 'discipline', component: CoordinatorDisciplineComponent },
+    { path: 'discipliner', component: CoordinatorDisciplineRegisterComponent },
+    { path: 'coorfirstscreen', component: CoordinatorFirstScreenComponent },
+    { path: 'login', component: CoordinatorLoginComponent },
+    { path: 'schedules', component: CoordinatorSchedulesComponent },
+    { path: 'teacher', component: CoordinatorTeacherComponent },
+    { path: 'teacherr', component: CoordinatorTeacherRegisterComponent },
+    { path: 'firstscreen', component: FirstScreenComponent }
 
 ];
 

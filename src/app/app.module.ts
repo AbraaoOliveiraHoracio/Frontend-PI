@@ -18,6 +18,7 @@ import { CoordinatorDisciplineRegisterComponent } from './coordinator-discipline
 import { CoordinatorCoursesRegisterComponent } from './coordinator-courses-register/coordinator-courses-register.component';
 import { CoordinatorClassroomsRegisterComponent } from './coordinator-classrooms-register/coordinator-classrooms-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppRoutingModule } from './app.routing.module';
 
 
 
@@ -43,7 +44,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
