@@ -1,13 +1,14 @@
+// app.module.ts
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router'; // Importe o RouterModule
 
 import { AppComponent } from './app.component';
 import { FirstScreenComponent } from './first-screen/first-screen.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoordinatorLoginComponent } from './coordinator-login/coordinator-login.component';
 import { CoordinatorFirstScreenComponent } from './coordinator-first-screen/coordinator-first-screen.component';
-
 import { CoordinatorTeacherComponent } from './coordinator-teacher/coordinator-teacher.component';
 import { CoordinatorDisciplineComponent } from './coordinator-discipline/coordinator-discipline.component';
 import { CoordinatorClassroomsComponent } from './coordinator-classrooms/coordinator-classrooms.component';
@@ -19,8 +20,6 @@ import { CoordinatorCoursesRegisterComponent } from './coordinator-courses-regis
 import { CoordinatorClassroomsRegisterComponent } from './coordinator-classrooms-register/coordinator-classrooms-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app.routing.module';
-
-
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { AppRoutingModule } from './app.routing.module';
     CoordinatorDisciplineRegisterComponent,
     CoordinatorCoursesRegisterComponent,
     CoordinatorClassroomsRegisterComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -45,9 +43,10 @@ import { AppRoutingModule } from './app.routing.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RouterModule, // Adicione o RouterModule aqui
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
