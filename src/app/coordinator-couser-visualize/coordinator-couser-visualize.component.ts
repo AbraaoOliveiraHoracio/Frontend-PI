@@ -4,21 +4,20 @@ import { CoursesRegister } from '../CoursesRegister';
 import { CoursesRegisterService } from '../courses-register.service';
 
 @Component({
-  selector: 'app-coordinator-courses-register',
-  templateUrl: './coordinator-courses-register.component.html',
-  styleUrls: ['./coordinator-courses-register.component.css']
+  selector: 'app-coordinator-couser-visualize',
+  templateUrl: './coordinator-couser-visualize.component.html',
+  styleUrls: ['./coordinator-couser-visualize.component.css']
 })
-export class CoordinatorCoursesRegisterComponent implements OnInit {
+export class CoordinatorCouserVisualizeComponent implements OnInit {
 
   CoursesRegister: CoursesRegister[] = [];
   isEditing: boolean = false;
-
   formGroupClient: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private coursesRegisterService: CoursesRegisterService) {
     this.formGroupClient = this.formBuilder.group({
       id: [''],
-      name: [''],
+      name: ['', Validators.required],
       size: ['', Validators.required],
       period: ['', Validators.required],
     });
@@ -30,14 +29,18 @@ export class CoordinatorCoursesRegisterComponent implements OnInit {
 
   loadCoursesRegister() {
     this.coursesRegisterService.getCourses().subscribe({
-      next: data => this.CoursesRegister = data
+      next: data => {
+        this.CoursesRegister = data;
+      }
     });
   }
 
   save() {
     if (this.formGroupClient.valid) {
+      const formData = this.formGroupClient.value;
+
       if (this.isEditing) {
-        this.coursesRegisterService.update(this.formGroupClient.value).subscribe({
+        this.coursesRegisterService.update(formData).subscribe({
           next: () => {
             console.log('Update successful');
             this.loadCoursesRegister();
@@ -49,7 +52,7 @@ export class CoordinatorCoursesRegisterComponent implements OnInit {
           }
         });
       } else {
-        this.coursesRegisterService.save(this.formGroupClient.value).subscribe({
+        this.coursesRegisterService.save(formData).subscribe({
           next: data => {
             console.log('Save successful', data);
             this.CoursesRegister.push(data);
@@ -66,17 +69,10 @@ export class CoordinatorCoursesRegisterComponent implements OnInit {
   }
 
   edit(coursesRegister: CoursesRegister) {
-    this.coursesRegisterService.getCoursesId(coursesRegister.id).subscribe({
-      next: data => {
-        this.formGroupClient.patchValue(data);
-        this.isEditing = true;
-      },
-      error: (error) => {
-        console.error('Error fetching data for edit:', error);
-      }
-    });
+    this.formGroupClient.setValue(coursesRegister);
+    this.isEditing = true;
   }
-  
+
   delete(coursesRegister: CoursesRegister) {
     this.coursesRegisterService.delete(coursesRegister).subscribe({
       next: () => this.loadCoursesRegister()

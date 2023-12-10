@@ -4,12 +4,11 @@ import { ClassroomsRegister } from '../ClassroomsRegister';
 import { ClassroomsRegisterService } from '../classrooms-register.service';
 
 @Component({
-  selector: 'app-coordinator-classrooms-register',
-  templateUrl: './coordinator-classrooms-register.component.html',
-  styleUrls: ['./coordinator-classrooms-register.component.css']
+  selector: 'app-coordinator-classrooms-visualize',
+  templateUrl: './coordinator-classrooms-visualize.component.html',
+  styleUrls: ['./coordinator-classrooms-visualize.component.css']
 })
-export class CoordinatorClassroomsRegisterComponent implements OnInit {
-
+export class CoordinatorClassroomsVisualizeComponent {
   ClassroomsRegister: ClassroomsRegister[] = [];
   isEditing: boolean = false;
   formGroupClient: FormGroup;
@@ -36,10 +35,7 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
 
   save() {
     if (this.formGroupClient.valid) {
-      console.log('Formulário válido. Salvando...');
-  
       if (this.isEditing) {
-        console.log('Editando...');
         this.classroomsRegisterService.update(this.formGroupClient.value).subscribe({
           next: () => {
             console.log('Atualização bem-sucedida');
@@ -52,7 +48,6 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
           }
         });
       } else {
-        console.log('Salvando novo registro...');
         this.classroomsRegisterService.save(this.formGroupClient.value).subscribe({
           next: data => {
             console.log('Registro salvo com sucesso:', data);
@@ -65,9 +60,22 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
         });
       }
     } else {
+      this.markFormGroupTouched(this.formGroupClient);
       console.error('Formulário inválido. Certifique-se de preencher todos os campos corretamente.');
     }
   }
+  
+  // Marcar todos os controles do FormGroup como tocados para exibir mensagens de erro
+  private markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => {
+      control.markAsTouched();
+  
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+  
 
   edit(classroomsRegister: ClassroomsRegister) {
     this.formGroupClient.setValue(classroomsRegister);

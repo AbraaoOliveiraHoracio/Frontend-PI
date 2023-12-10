@@ -1,28 +1,29 @@
+<!-- coordinator-discipline-register.component.html -->
 <div class="container container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="" style="
-      margin-top: 70px;
-      width: 650px;
-      height: 450px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      border: 0.5px solid #878787;
-      background: #FFF;
-      box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
-      padding: 20px
-    ">
-      <h2 class="mt-5 poppins">Cadastrar Disciplina</h2>
-      <p class="poppins">Insira as informações para cadastrar a Disciplina:</p>
+  <div class="" style="
+    margin-top: 70px;
+    width: 650px;
+    height: 450px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 0.5px solid #878787;
+    background: #FFF;
+    box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
+    padding: 20px
+  ">
+    <h2 class="mt-5 poppins">Cadastrar Disciplina</h2>
+    <p class="poppins">Insira as informações para cadastrar a Disciplina:</p>
 
+    <form [formGroup]="formGroupClient">
       <div class="mt-5">
-        <label for="exampleInputEmail1" class="form-label poppins">Disciplina:</label>
-        <input type="email" class="form-control focus-ring" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="disciplina" class="form-label poppins">Disciplina:</label>
+        <input type="text" class="form-control focus-ring" id="disciplina" aria-describedby="emailHelp" 
+               formControlName="name">
       </div>
 
-
-      <button type="button" class="btn btn-dark mt-5 poppins" style="min-width: 100%;">Cadastrar</button>
+      <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()" style="min-width: 100%;">Cadastrar</button>
 
       <button routerLink="/CoordinatorDiscipline" type="button" class="btn btn-light mt-3 poppins" style="min-width: 100%;">Voltar</button>
-    </div>
-
-
+    </form>
   </div>
+</div>

@@ -1,0 +1,58 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="p-4" style="
+      margin-top: 70px;
+      width: 650px;
+      border-radius: 10px;
+      border: 0.5px solid #878787;
+      background: #FFF;
+      box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
+      position: relative;
+    ">
+      <button routerLink="/CoordinatorDiscipline" type="button" class="btn poppins" style="
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 12H6M12 5l-7 7 7 7" />
+        </svg>
+      </button>
+  
+      <h2 class="mt-5 poppins">Lista de disciplinas</h2>
+      <table class="table table-striped mt-5">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome da Disciplina</th>
+            <!-- Adicione mais colunas conforme necessário -->
+            <th scope="col">Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let discipline of disciplineRegister">
+            <th scope="row">{{ discipline.id }}</th>
+            <td>{{ discipline.name }}</td>
+            <!-- Adicione mais células conforme necessário -->
+            <td class="d-flex justify-content-end">
+              <button class="btn btn-primary me-1" (click)="edit(discipline)">Editar</button>
+              <button class="btn btn-danger" (click)="delete(discipline)">Excluir</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Formulário para Editar/Salvar -->
+      <form [formGroup]="formGroupClient" *ngIf="isEditing">
+        <div class="mt-5">
+          <label for="name" class="form-label poppins">Nome da disciplina:</label>
+          <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome da disciplina">
+        </div>
+  
+        <!-- Adicione mais campos conforme necessário -->
+  
+        <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()">Salvar</button>
+      </form>
+    </div>
+  </div>
+  

@@ -17,6 +17,13 @@ import { CoordinatorTeacherRegisterComponent } from './coordinator-teacher-regis
 import { CoordinatorDisciplineRegisterComponent } from './coordinator-discipline-register/coordinator-discipline-register.component';
 import { CoordinatorCoursesRegisterComponent } from './coordinator-courses-register/coordinator-courses-register.component';
 import { CoordinatorClassroomsRegisterComponent } from './coordinator-classrooms-register/coordinator-classrooms-register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CoordinatorCouserVisualizeComponent } from './coordinator-couser-visualize/coordinator-couser-visualize.component';
+import { CoordinatorClassroomsVisualizeComponent } from './coordinator-classrooms-visualize/coordinator-classrooms-visualize.component';
+import { CoordinatorDisciplineVisualizeComponent } from './coordinator-discipline-visualize/coordinator-discipline-visualize.component';
+import { CoordinatorTeacherVisualizeComponent } from './coordinator-teacher-visualize/coordinator-teacher-visualize.component';
+
 
 
 @NgModule({
@@ -34,12 +41,22 @@ import { CoordinatorClassroomsRegisterComponent } from './coordinator-classrooms
     CoordinatorDisciplineRegisterComponent,
     CoordinatorCoursesRegisterComponent,
     CoordinatorClassroomsRegisterComponent,
+    CoordinatorCouserVisualizeComponent,
+    CoordinatorClassroomsVisualizeComponent,
+    CoordinatorDisciplineVisualizeComponent,
+    CoordinatorTeacherVisualizeComponent,
+
+   
+    
+  
 
   ],
   imports: [
     BrowserModule,
     NgbModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

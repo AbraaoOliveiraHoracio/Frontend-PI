@@ -1,14 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeacherRegister } from '../TeacherRegister';
 import { TeacherRegisterService } from '../teacher-register.service';
 
 @Component({
-  selector: 'app-coordinator-teacher-register',
-  templateUrl: './coordinator-teacher-register.component.html',
-  styleUrls: ['./coordinator-teacher-register.component.css']
+  selector: 'app-coordinator-teacher-visualize',
+  templateUrl: './coordinator-teacher-visualize.component.html',
+  styleUrls: ['./coordinator-teacher-visualize.component.css']
 })
-export class CoordinatorTeacherRegisterComponent implements OnInit {
+export class CoordinatorTeacherVisualizeComponent {
   teacherRegister: TeacherRegister[] = [];
   isEditing: boolean = false;
   formGroupClient: FormGroup;

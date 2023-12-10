@@ -1,0 +1,67 @@
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="p-4" style="
+    margin-top: 70px;
+    width: 650px;
+    border-radius: 10px;
+    border: 0.5px solid #878787;
+    background: #FFF;
+    box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
+    position: relative;
+  ">
+    <button routerLink="/CoordinatorCourses" type="button" class="btn poppins" style="
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    ">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#000000"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H6M12 5l-7 7 7 7" />
+      </svg>
+    </button>
+
+    <h2 class="mt-5 poppins">Lista de cursos</h2>
+    <table class="table table-striped mt-5">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nome do Curso</th>
+          <th scope="col">Número de Semestres</th>
+          <th scope="col">Número Limite de Alunos</th>
+          <th scope="col">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of CoursesRegister">
+          <th scope="row">{{ course.id }}</th>
+          <td>{{ course.name }}</td>
+          <td>{{ course.size }}</td>
+          <td>{{ course.period }}</td>
+          <td class="d-flex justify-content-end">
+            <button class="btn btn-primary me-1" (click)="edit(course)">Editar</button>
+            <button class="btn btn-danger" (click)="delete(course)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Formulário para Editar/Salvar -->
+    <form [formGroup]="formGroupClient" *ngIf="isEditing">
+      <div class="mt-5">
+        <label for="name" class="form-label poppins">Nome do curso:</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome do curso">
+      </div>
+
+      <div class="mt-4">
+        <label for="size" class="form-label poppins">Número de semestres:</label>
+        <input type="number" class="form-control" formControlName="size" id="size" placeholder="Número de semestres">
+      </div>
+
+      <div class="mt-4">
+        <label for="period" class="form-label poppins">Número limite de alunos:</label>
+        <input type="number" class="form-control" formControlName="period" id="period" placeholder="Número limite de alunos">
+      </div>
+
+      <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()">Salvar</button>
+    </form>
+  </div>
+</div>

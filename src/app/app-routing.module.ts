@@ -13,10 +13,15 @@ import { CoordinatorClassroomsComponent } from './coordinator-classrooms/coordin
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule,Routes } from '@angular/router';
+import { CoordinatorCouserVisualizeComponent } from './coordinator-couser-visualize/coordinator-couser-visualize.component';
+import { CoordinatorClassroomsVisualizeComponent } from './coordinator-classrooms-visualize/coordinator-classrooms-visualize.component';
+import { CoordinatorTeacherVisualizeComponent } from './coordinator-teacher-visualize/coordinator-teacher-visualize.component';
+import { CoordinatorDisciplineVisualizeComponent } from './coordinator-discipline-visualize/coordinator-discipline-visualize.component';
+
 
 
 const routes: Routes = [
-  { path: 'coordinator-classroms', component: CoordinatorClassroomsComponent },
+  { path: 'CoordinatorClassrooms', component: CoordinatorClassroomsComponent },
   { path: 'CoordinatorClassroomsRegister', component: CoordinatorClassroomsRegisterComponent },
   { path: 'CoordinatorCourses', component: CoordinatorCoursesComponent },
   { path: 'CoordinatorCoursesRegister', component: CoordinatorCoursesRegisterComponent },
@@ -28,7 +33,11 @@ const routes: Routes = [
   { path: 'CoordinatorTeacher', component: CoordinatorTeacherComponent },
   { path: 'CoordinatorTeacherRegister', component: CoordinatorTeacherRegisterComponent },
   { path: 'FirstScreen', component: FirstScreenComponent },
-
+  { path: 'CoordinatorCouserVisualize', component: CoordinatorCouserVisualizeComponent },
+  { path: 'CoordinatorClassroomsVisualize', component: CoordinatorClassroomsVisualizeComponent },
+  { path: 'CoordinatorDisciplineVisualize', component: CoordinatorDisciplineVisualizeComponent },
+  { path: 'CoordinatorTeacherVisualize', component: CoordinatorTeacherVisualizeComponent },
+//ng g c CoordinatorTeacherVisualize
 ];
 
 @NgModule({
