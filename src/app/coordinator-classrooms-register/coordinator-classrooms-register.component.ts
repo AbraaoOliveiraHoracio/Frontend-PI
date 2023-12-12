@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { ClassroomsRegister } from '../ClassroomsRegister';
 import { ClassroomsRegisterService } from '../classrooms-register.service';
 
@@ -17,9 +17,9 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private classroomsRegisterService: ClassroomsRegisterService) {
     this.formGroupClient = formBuilder.group({
       id: [''],
-      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      size: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
-      floor: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5)]],
+      type: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50),this.validateSpecialCharacters]],
+      size: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(10),this.invalidSize]],
+      floor: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(5),this.invalidfloor]],
     });
   }
 
@@ -69,27 +69,14 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
     }
   }
 
-  edit(classroomsRegister: ClassroomsRegister) {
-    this.formGroupClient.setValue(classroomsRegister);
-    this.isEditing = true;
-  }
-
-  delete(classroomsRegister: ClassroomsRegister) {
-    this.classroomsRegisterService.delete(classroomsRegister).subscribe({
-      next: () => this.loadClassroomsRegister(),
-      error: (error) => {
-        console.error('Erro ao excluir:', error);
-      }
-    });
-  }
 
   clear() {
     this.formGroupClient.reset();
     this.isEditing = false;
   }
 
-  get name() {
-    return this.formGroupClient.get('name');
+  get type() {
+    return this.formGroupClient.get('type');
   }
 
   get size() {
@@ -99,4 +86,55 @@ export class CoordinatorClassroomsRegisterComponent implements OnInit {
   get floor() {
     return this.formGroupClient.get('floor');
   }
+
+  validateSpecialCharacters(control: AbstractControl): { [key: string]: any } | null {
+    const regex = /^[a-zA-Z0-9 ]+$/;
+    const valid = regex.test(control.value);
+    return valid ? null : { 'invalidCharacters': true };
+  }
+
+  invalidSize(control: AbstractControl): { [key: string]: any } | null {
+    const valid = control.value > 0; // Adicione sua lógica de validação específica para 'size'
+    return valid ? null : { 'invalidSize': true };
+  }
+
+  invalidfloor(control: AbstractControl): { [key: string]: any } | null {
+    const valid = control.value > 0; // Adicione sua lógica de validação específica para 'size'
+    return valid ? null : { 'invalidfloor': true };
+  }
+  
+  
+  get floorErrorMessage() {
+    const floorControl = this.formGroupClient.get('floor');
+    if (floorControl?.hasError('required')) {
+      return 'O Andar é obrigatório.';
+    }
+    if (floorControl?.hasError('invalidfloor')) {
+      return 'o andar deve ser maior que zero.';
+    }
+    return '';
+  }
+  get sizeErrorMessage() {
+    const sizeControl = this.formGroupClient.get('size');
+    if (sizeControl?.hasError('required')) {
+      return 'O número máximo é obrigatório.';
+    }
+    if (sizeControl?.hasError('invalidSize')) {
+      return 'O número máximo deve ser maior que zero.';
+    }
+    return '';
+  }
+
+
+
+
+  get typeErrorMessage() {
+    const typeControl = this.formGroupClient.get('type');
+    if (typeControl?.hasError('required')) {
+      return 'O nome do sala/lab é obrigatório.';
+    }    if (typeControl?.hasError('invalidCharacters')) {
+      return 'O nome da sala/lab não pode conter caracteres especiais.';
+    }
+    return ''
+}
 }

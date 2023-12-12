@@ -2,6 +2,7 @@
     <div class="p-4" style="
       margin-top: 70px;
       width: 650px;
+      display: flexbox;
       border-radius: 10px;
       border: 0.5px solid #878787;
       background: #FFF;
@@ -33,7 +34,7 @@
         <tbody>
           <tr *ngFor="let classroom of ClassroomsRegister">
             <th scope="row">{{ classroom.id }}</th>
-            <td>{{ classroom.name }}</td>
+            <td>{{ classroom.type }}</td>
             <td>{{ classroom.size }}</td>
             <td>{{ classroom.floor }}</td>
             <td class="d-flex justify-content-end">
@@ -47,18 +48,27 @@
       <!-- Formulário para Editar/Salvar -->
       <form [formGroup]="formGroupClient" *ngIf="isEditing">
         <div class="mt-5">
-          <label for="name" class="form-label poppins">Nome da sala:</label>
-          <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome da sala">
+          <label for="type" class="form-label poppins">Nome da sala:</label>
+          <input type="text" class="form-control focus-ring" formControlName="type" placeholder="Nome da sala" id="type" aria-describedby="emailHelp">
+          <div *ngIf="type?.invalid && (type?.dirty || type?.touched)" class="text-danger">
+            {{ typeErrorMessage }}
+          </div>
         </div>
   
         <div class="mt-4">
-          <label for="size" class="form-label poppins">Número de alunos:</label>
-          <input type="number" class="form-control" formControlName="size" id="size" placeholder="Número de alunos">
+          <label for="size" class="form-label poppins">Número máximo de alunos:</label>
+          <input type="number" class="form-control" formControlName="size" placeholder="Número máximo de alunos" id="size" aria-describedby="emailHelp">
+          <div *ngIf="size?.invalid && (size?.dirty || size?.touched)" class="text-danger">
+            {{ sizeErrorMessage }}
+          </div>
         </div>
   
         <div class="mt-4">
-          <label for="floor" class="form-label poppins">Andar:</label>
-          <input type="string" class="form-control" formControlName="floor" id="floor" placeholder="Andar">
+          <label for="floor" class="form-label poppins">Andar Da Sala:</label>
+          <input type="string" class="form-control" formControlName="floor" placeholder="Andar Da Sala" id="floor" aria-describedby="emailHelp">
+          <div *ngIf="floor?.invalid && (floor?.dirty || floor?.touched)" class="text-danger">
+            {{ floorErrorMessage }}
+          </div>
         </div>
   
         <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()">Salvar</button>

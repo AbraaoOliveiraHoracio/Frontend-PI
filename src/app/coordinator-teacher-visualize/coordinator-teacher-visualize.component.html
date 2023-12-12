@@ -4,11 +4,12 @@
       width: 650px;
       border-radius: 10px;
       border: 0.5px solid #878787;
+      display: flexbox;
       background: #FFF;
       box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
       position: relative;
     ">
-      <button routerLink="/CoordinatorDiscipline" type="button" class="btn poppins" style="
+      <button routerLink="/CoordinatorTeacher" type="button" class="btn poppins" style="
         position: absolute;
         top: 10px;
         left: 10px;
@@ -35,7 +36,7 @@
             <th scope="row">{{ teacher.id }}</th>
             <td>{{ teacher.name }}</td>
             <td>{{ teacher.email }}</td>
-            <td>{{ teacher.senha }}</td>
+            <td>{{ teacher.pass }}</td>
             <td class="d-flex justify-content-end">
               <button class="btn btn-primary me-1" (click)="edit(teacher)">Editar</button>
               <button class="btn btn-danger" (click)="delete(teacher)">Excluir</button>
@@ -47,18 +48,33 @@
       <!-- Formulário para Editar/Salvar -->
       <form [formGroup]="formGroupClient" *ngIf="isEditing">
         <div class="mt-5">
-          <label for="name" class="form-label poppins">Nome do professor:</label>
-          <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome do professor">
+          <label for="name" class="form-label poppins">Nome:</label>
+          <input type="text" class="form-control focus-ring" formControlName="name" id="name" placeholder="Nome do professor" aria-describedby="emailHelp">
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                {{ nameErrorMessage }}
+            <div *ngIf="name?.errors?.['required']">Nome é obrigatório.</div>
+            <div *ngIf="name?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres.</div>
+            <div *ngIf="name?.errors?.['maxlength']">Nome deve ter no máximo 50 caracteres.</div>
+          </div>
         </div>
   
         <div class="mt-4">
           <label for="email" class="form-label poppins">Email:</label>
-          <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email do professor">
+          <input type="email" class="form-control focus-ring" formControlName="email" id="email" placeholder="Email do professor" aria-describedby="emailHelp">
+          <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+            <div *ngIf="email?.errors?.['required']">Email é obrigatório.</div>
+            <div *ngIf="email?.errors?.['email']">Email deve ser válido.</div>
+          </div>
         </div>
   
         <div class="mt-4">
-          <label for="senha" class="form-label poppins">Senha:</label>
-          <input type="password" class="form-control" formControlName="senha" id="senha" placeholder="Senha do professor">
+          <label for="pass" class="form-label poppins">Senha:</label>
+          <input type="string" class="form-control focus-ring" formControlName="pass" id="pass" placeholder="Senha do professor">
+          <div *ngIf="pass?.invalid && (pass?.dirty || pass?.touched)" class="text-danger">
+            <div *ngIf="pass?.errors?.['required']">Senha é obrigatória.</div>
+            <div *ngIf="pass?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres.</div>
+            <div *ngIf="pass?.errors?.['maxlength']">Senha deve ter no máximo 20 caracteres.</div>
+          </div>
         </div>
   
         <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()">Salvar</button>

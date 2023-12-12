@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TeacherRegister } from '../TeacherRegister';
 import { TeacherRegisterService } from '../teacher-register.service';
 
@@ -16,9 +16,9 @@ export class CoordinatorTeacherRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private teacherRegisterService: TeacherRegisterService) {
     this.formGroupClient = this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Add email with validation
-      senha: ['', Validators.required], // Add senha with validation
+      name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50),this.validateSpecialCharacters]],
+      email: ['', [Validators.required, Validators.email]],
+      pass: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
     });
   }
 
@@ -67,15 +67,17 @@ export class CoordinatorTeacherRegisterComponent implements OnInit {
     }
   }
 
-  edit(teacherRegister: TeacherRegister) {
-    this.formGroupClient.setValue(teacherRegister);
-    this.isEditing = true;
+  validateSpecialCharacters(control: AbstractControl): { [key: string]: any } | null {
+    const regex = /^[a-zA-Z0-9 ]+$/;
+    const valid = regex.test(control.value);
+    return valid ? null : { 'invalidCharacters': true };
   }
-
-  delete(teacherRegister: TeacherRegister) {
-    this.teacherRegisterService.delete(teacherRegister).subscribe({
-      next: () => this.loadteacherRegister()
-    });
+  get nameErrorMessage() {
+    const nameControl = this.formGroupClient.get('name');
+    if (nameControl?.hasError('invalidCharacters')) {
+      return 'O nome do professor não pode conter caracteres especiais.';
+    }
+    return '';
   }
 
   clear() {
@@ -91,7 +93,7 @@ export class CoordinatorTeacherRegisterComponent implements OnInit {
     return this.formGroupClient.get('email');
   }
 
-  get senha() {
-    return this.formGroupClient.get('senha');
+  get pass() {
+    return this.formGroupClient.get('pass');
   }
 }

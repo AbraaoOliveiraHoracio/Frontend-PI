@@ -1,42 +1,54 @@
 <div class="container container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="" style="
-      margin-top: 70px;
-      width: 650px;
-      height: 765px;
-      flex-shrink: 0;
-      border-radius: 10px;
-      border: 0.5px solid #878787;
-      background: #FFF;
-      box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
-      padding: 20px
-    ">
-      <h2 class="mt-5 poppins">Cadastrar professor</h2>
-      <p class="poppins">Insira as informações para cadastrar professor:</p>
+  <div style="
+    margin-top: 70px;
+    width: 650px;
+    
+    display: flexbox;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 0.5px solid #878787;
+    background: #FFF;
+    box-shadow: 0px 4px 64px 0px rgba(0, 0, 0, 0.05);
+    padding: 20px
+  ">
+    <h2 class="mt-5 poppins">Cadastrar Professor</h2>
+    <p class="poppins">Insira as informações para cadastrar o professor:</p>
 
+    <form [formGroup]="formGroupClient">
       <div class="mt-5">
-        <label for="exampleInputEmail1" class="form-label poppins">Nome:</label>
-        <input type="email" class="form-control focus-ring" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="name" class="form-label poppins">Nome:</label>
+        <input type="text" class="form-control focus-ring" formControlName="name" id="name" placeholder="Nome do professor" aria-describedby="emailHelp">
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+              {{ nameErrorMessage }}
+          <div *ngIf="name?.errors?.['required']">Nome é obrigatório.</div>
+          <div *ngIf="name?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres.</div>
+          <div *ngIf="name?.errors?.['maxlength']">Nome deve ter no máximo 50 caracteres.</div>
+        </div>
       </div>
 
       <div class="mt-4">
-        <label for="exampleInputEmail1" class="form-label poppins">Email:</label>
-        <input type="email" class="form-control focus-ring" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <label for="email" class="form-label poppins">Email:</label>
+        <input type="email" class="form-control focus-ring" formControlName="email" id="email" placeholder="Email do professor" aria-describedby="emailHelp">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+          <div *ngIf="email?.errors?.['required']">Email é obrigatório.</div>
+          <div *ngIf="email?.errors?.['email']">Email deve ser válido.</div>
+        </div>
       </div>
 
       <div class="mt-4">
-        <label for="exampleInputPassword1" class="form-label poppins">Senha:</label>
-        <input type="password" class=" focus-ring form-control poppins" id="exampleInputPassword1">
+        <label for="pass" class="form-label poppins">Senha:</label>
+        <input type="string" class="form-control focus-ring" formControlName="pass" id="pass" placeholder="Senha do professor">
+        <div *ngIf="pass?.invalid && (pass?.dirty || pass?.touched)" class="text-danger">
+          <div *ngIf="pass?.errors?.['required']">Senha é obrigatória.</div>
+          <div *ngIf="pass?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres.</div>
+          <div *ngIf="pass?.errors?.['maxlength']">Senha deve ter no máximo 20 caracteres.</div>
+        </div>
       </div>
 
-      <div class="mt-4">
-        <label for="exampleInputPassword1" class="form-label poppins">Confirmar senha:</label>
-        <input type="password" class=" focus-ring form-control poppins" id="exampleInputPassword1">
+      <div class="d-flex flex-column mt-5">
+        <button type="button" class="btn btn-dark poppins" (click)="save()" style="min-width: 100%;">Cadastrar</button>
+        <button routerLink="/CoordinatorTeacher" type="button" class="btn btn-light mt-3 poppins" style="min-width: 100%;">Voltar</button>
       </div>
-
-      <button type="button" class="btn btn-dark mt-5 poppins" style="min-width: 100%;">Cadastrar</button>
-
-      <button routerLink="/CoordinatorTeacher" type="button" class="btn btn-light mt-3 poppins" style="min-width: 100%;">Voltar</button>
-    </div>
-
-
+    </form>
   </div>
+</div>

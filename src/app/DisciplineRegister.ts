@@ -1,5 +1,5 @@
 export interface DisciplineRegister{
-    id: string;
+    id:number;
     name:string;
    
 }

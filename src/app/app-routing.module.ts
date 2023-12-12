@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'CoordinatorClassroomsVisualize', component: CoordinatorClassroomsVisualizeComponent },
   { path: 'CoordinatorDisciplineVisualize', component: CoordinatorDisciplineVisualizeComponent },
   { path: 'CoordinatorTeacherVisualize', component: CoordinatorTeacherVisualizeComponent },
+
 //ng g c CoordinatorTeacherVisualize
 ];
 

@@ -2,6 +2,7 @@
   <div class="p-4" style="
     margin-top: 70px;
     width: 650px;
+    display: flexbox;
     border-radius: 10px;
     border: 0.5px solid #878787;
     background: #FFF;
@@ -48,18 +49,27 @@
     <form [formGroup]="formGroupClient" *ngIf="isEditing">
       <div class="mt-5">
         <label for="name" class="form-label poppins">Nome do curso:</label>
-        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome do curso">
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome do curso" aria-describedby="emailHelp">
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+          {{ nameErrorMessage }}
+        </div>
       </div>
+    <div class="mt-4">
+      <label for="size" class="form-label poppins">Número de semestres:</label>
+      <input type="number" class="form-control" formControlName="size" id="size" placeholder="Número de semestres" aria-describedby="emailHelp">
+      <div *ngIf="size?.invalid && (size?.dirty || size?.touched)" class="text-danger">
+        {{ sizeErrorMessage }}
+      </div>
+    </div>
 
-      <div class="mt-4">
-        <label for="size" class="form-label poppins">Número de semestres:</label>
-        <input type="number" class="form-control" formControlName="size" id="size" placeholder="Número de semestres">
+    <div class="mt-4">
+      <label for="period" class="form-label poppins">Número limite de alunos:</label>
+      <input type="number" class="form-control" formControlName="period" id="period" placeholder="Número limite de alunos" aria-describedby="emailHelp">
+      <div *ngIf="period?.invalid && (period?.dirty || period?.touched)" class="text-danger">
+        {{ periodErrorMessage }}
       </div>
+    </div>
 
-      <div class="mt-4">
-        <label for="period" class="form-label poppins">Número limite de alunos:</label>
-        <input type="number" class="form-control" formControlName="period" id="period" placeholder="Número limite de alunos">
-      </div>
 
       <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()">Salvar</button>
     </form>

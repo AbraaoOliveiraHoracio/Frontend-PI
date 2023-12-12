@@ -1,7 +1,7 @@
 export interface TeacherRegister{
-    id: string;
+    id: number;
     name:string;
     email:string;
-    senha:string;
+    pass:string;
    
 }

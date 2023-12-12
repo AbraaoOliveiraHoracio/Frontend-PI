@@ -10,7 +10,7 @@ export class ClassroomsRegisterService {
   checkIfNameExists(name: any) {
     throw new Error('Method not implemented.');
   }
-  url = 'http://localhost:8080/ClassRoom';
+  url = 'http://localhost:8080/classroom';
 
   constructor(private http: HttpClient) {}
   

@@ -2,6 +2,7 @@
     <div class="p-4" style="
       margin-top: 70px;
       width: 650px;
+      display: flexbox;
       border-radius: 10px;
       border: 0.5px solid #878787;
       background: #FFF;
@@ -47,6 +48,9 @@
         <div class="mt-5">
           <label for="name" class="form-label poppins">Nome da disciplina:</label>
           <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome da disciplina">
+          <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+            {{ nameErrorMessage }}
+          </div>
         </div>
   
         <!-- Adicione mais campos conforme necessário -->

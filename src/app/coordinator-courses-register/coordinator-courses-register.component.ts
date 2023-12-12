@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CoursesRegister } from '../CoursesRegister';
 import { CoursesRegisterService } from '../courses-register.service';
 
@@ -18,9 +18,9 @@ export class CoordinatorCoursesRegisterComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private coursesRegisterService: CoursesRegisterService) {
     this.formGroupClient = this.formBuilder.group({
       id: [''],
-      name: [''],
-      size: ['', Validators.required],
-      period: ['', Validators.required],
+      name: ['', [Validators.required, this.validateSpecialCharacters]],
+      size: ['', [Validators.required, this.invalidSize]],
+      period: ['', [Validators.required, this.invalidPeriod]],
     });
   }
 
@@ -65,27 +65,57 @@ export class CoordinatorCoursesRegisterComponent implements OnInit {
     }
   }
 
-  edit(coursesRegister: CoursesRegister) {
-    this.coursesRegisterService.getCoursesId(coursesRegister.id).subscribe({
-      next: data => {
-        this.formGroupClient.patchValue(data);
-        this.isEditing = true;
-      },
-      error: (error) => {
-        console.error('Error fetching data for edit:', error);
-      }
-    });
-  }
-  
-  delete(coursesRegister: CoursesRegister) {
-    this.coursesRegisterService.delete(coursesRegister).subscribe({
-      next: () => this.loadCoursesRegister()
-    });
-  }
 
   clear() {
     this.formGroupClient.reset();
     this.isEditing = false;
+  }
+  validateSpecialCharacters(control: AbstractControl): { [key: string]: any } | null {
+    const regex = /^[a-zA-Z0-9 ]+$/;
+    const valid = regex.test(control.value);
+    return valid ? null : { 'invalidCharacters': true };
+  }
+
+  
+  invalidPeriod(control: AbstractControl): { [key: string]: any } | null {
+    const valid = control.value > 0; // Adicione sua lógica de validação específica para 'size'
+    return valid ? null : { 'invalidPeriod': true };
+  } 
+  
+  invalidSize(control: AbstractControl): { [key: string]: any } | null {
+    const valid = control.value > 0; // Adicione sua lógica de validação específica para 'size'
+    return valid ? null : { 'invalidSize': true };
+  }
+
+  get sizeErrorMessage() {
+    const sizeControl = this.formGroupClient.get('size');
+    if (sizeControl?.hasError('required')) {
+      return 'O tamanho é obrigatório.';
+    }
+    if (sizeControl?.hasError('invalidSize')) {
+      return 'O tamanho deve ser maior que zero.';
+    }
+    return '';
+  }
+
+  get periodErrorMessage() {
+    const periodControl = this.formGroupClient.get('period');
+    if (periodControl?.hasError('required')) {
+      return 'O período é obrigatório.';
+    }
+    if (periodControl?.hasError('invalidPeriod')) {
+      return 'O período deve ser maior que zero.';
+    }
+    return '';
+  }
+  get nameErrorMessage() {
+    const nameControl = this.formGroupClient.get('name');
+    if (nameControl?.hasError('required')) {
+      return 'O nome do curso é obrigatório.';
+    }    if (nameControl?.hasError('invalidCharacters')) {
+      return 'O nome da curso não pode conter caracteres especiais.';
+    }
+    return '';
   }
 
   get name() {

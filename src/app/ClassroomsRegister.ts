@@ -1,6 +1,6 @@
 export interface ClassroomsRegister{
-    id: string;
-    name:string;
+    id: number;
+    type:string;
     size:string;
     floor: string;
 }

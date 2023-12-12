@@ -3,7 +3,7 @@
   <div class="" style="
     margin-top: 70px;
     width: 650px;
-    height: 450px;
+    display: flexbox;
     flex-shrink: 0;
     border-radius: 10px;
     border: 0.5px solid #878787;
@@ -14,11 +14,13 @@
     <h2 class="mt-5 poppins">Cadastrar Disciplina</h2>
     <p class="poppins">Insira as informações para cadastrar a Disciplina:</p>
 
-    <form [formGroup]="formGroupClient">
+    <form [formGroup]="formGroupClient" >
       <div class="mt-5">
-        <label for="disciplina" class="form-label poppins">Disciplina:</label>
-        <input type="text" class="form-control focus-ring" id="disciplina" aria-describedby="emailHelp" 
-               formControlName="name">
+        <label for="name" class="form-label poppins">Nome da disciplina:</label>
+        <input type="text" class="form-control" formControlName="name" id="name" placeholder="Nome da disciplina">
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+          {{ nameErrorMessage }}
+        </div>
       </div>
 
       <button type="button" class="btn btn-dark mt-5 poppins" (click)="save()" style="min-width: 100%;">Cadastrar</button>

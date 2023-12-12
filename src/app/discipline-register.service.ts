@@ -17,7 +17,7 @@ export class DisciplineRegisterService {
     return this.http.get<DisciplineRegister[]>(this.url);
   }
 
-  getDisciplineById(id: number): Observable<DisciplineRegister> {
+  getDisciplineId(id: number): Observable<DisciplineRegister> {
     return this.http.get<DisciplineRegister>(`${this.url}/${id}`);
   }
 

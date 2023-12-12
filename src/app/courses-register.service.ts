@@ -8,7 +8,7 @@ import { CoursesRegister } from './CoursesRegister';
   providedIn: 'root'
 })
 export class CoursesRegisterService {
-  url = 'http://localhost:8080/Course';
+  url = 'http://localhost:8080/course';
 
   constructor(private http: HttpClient) {}
 
